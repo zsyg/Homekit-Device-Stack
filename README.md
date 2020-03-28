@@ -44,7 +44,7 @@ The devcies Homekit Device Stack can create are as follows (more will become ava
 ## So, it only reports changes?
 Nope!
 
-HomeKit Device Stack has an a web API, that is used to alter the devices state, this alterred state is then reflected in HomeApp, or any other Homekit enabled application.
+HomeKit Device Stack has a web API, that is used to alter the devices state, this alterred state is then reflected in HomeApp, or any other Homekit enabled application.
 
 ## Does It Run On My Microwave?
 Not yet!
