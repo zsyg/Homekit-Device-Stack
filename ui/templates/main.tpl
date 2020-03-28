@@ -20,7 +20,7 @@
                     <div style="font-weight:bold;font-size:24px">{{name}}</div>
                     
                     <div style="font-size:14px">{{description}}</div><br />
-                    <div style="font-size:14px">API Address : <a target="_blank"  href="/password/accessories/{{usernameCleaned}}">accessories/{{usernameCleaned}}</a></div>
+                    <div style="font-size:14px">Device ID : {{accessoryID}}, API Address : <a target="_blank"  href="/password/accessories/{{accessoryID}}">accessories/{{accessoryID}}</a></div>
                 
 
                     
@@ -35,7 +35,7 @@
 
 
 </div>
-<script>GetProperties('{{usernameCleaned}}');</script>
+<script>GetProperties('{{accessoryID}}');</script>
 {{/Config.accessories}}
 
 

@@ -149,7 +149,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge)
 
         util.appendAccessoryToConfig(AccessoryOBJ)
 
-        AccessoryOBJ.usernameCleaned = AccessoryOBJ.username.replace(/:/g, "");
+        AccessoryOBJ.accessoryID = AccessoryOBJ.username.replace(/:/g, "");
 
         config.accessories.push(AccessoryOBJ)
 
@@ -160,7 +160,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge)
                 let Acc = new  Accessory.Types[AccessoryOBJ.type].Object(AccessoryOBJ);
                 Acc.on('STATE_CHANGE', (PL,O) =>_ChangeEvent(PL, AccessoryOBJ,O))
                 Acc.on('IDENTIFY', (P) => _IdentifyEvent(P, AccessoryOBJ))
-                _Accessories[AccessoryOBJ.usernameCleaned] = Acc;
+                _Accessories[AccessoryOBJ.accessoryID] = Acc;
                 _Bridge.addAccessory(Acc.getAccessory())
                 break;
         }
@@ -199,7 +199,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge)
         const Acc = new  Accessory.Types[TargetAc.type].Object(TargetAc);
         Acc.on('STATE_CHANGE', (PL,O) =>_ChangeEvent(PL, TargetAc,O))
         Acc.on('IDENTIFY', (P) => _IdentifyEvent(P, TargetAc))
-        _Accessories[TargetAc.usernameCleaned] = Acc;
+        _Accessories[TargetAc.accessoryID] = Acc;
         _Bridge.addAccessory(Acc.getAccessory())
 
 

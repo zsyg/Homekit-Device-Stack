@@ -411,6 +411,10 @@ class TV extends AccessoryCLS
         // Inputs
         for (let i = 0; i < Config.inputs.length; i++)
         {
+            if(Config.inputs[i].length < 1)
+            {
+                continue;
+            }
             const Input = new Service.InputSource(Config.inputs[i],Config.inputs[i])
             Input.setCharacteristic(Characteristic.Identifier, (i + 1))
             Input.setCharacteristic(Characteristic.ConfiguredName, Config.inputs[i])

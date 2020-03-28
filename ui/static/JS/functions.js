@@ -111,7 +111,30 @@ function Prefill()
         $(".config").each(function()
         {
             const OBJ = $(this);
-            OBJ.val(Config[OBJ.attr('config')]);
+            if(OBJ.is('textarea'))
+            {
+                
+                const List = Config[OBJ.attr('config')]
+
+                List.forEach(function(v)
+                {
+                    if(OBJ.val().length > 0)
+                    {
+                        OBJ.val(OBJ.val()+'\n'+v);
+                    }
+                    else
+                    {
+                        OBJ.val(v)
+                    }
+                    
+
+                })
+            }
+            else
+            {
+                OBJ.val(Config[OBJ.attr('config')]);
+            }
+            
         })
     }
     
@@ -128,7 +151,16 @@ function Save(ObjectType)
         $(".config").each(function()
         {
             const OBJ = $(this);
-            AccessoryDetail[OBJ.attr('config')] = OBJ.val();
+            if(OBJ.is('textarea'))
+            {
+                let Items = OBJ.val().split(/\n/);
+                AccessoryDetail[OBJ.attr('config')] = Items
+            }
+            else
+            {
+                AccessoryDetail[OBJ.attr('config')] = OBJ.val();
+            }
+            
         })
     
         let Req =
@@ -148,7 +180,15 @@ function Save(ObjectType)
         $(".config").each(function()
         {
             const OBJ = $(this);
-            AccessoryDetail[OBJ.attr('config')] = OBJ.val();
+            if(OBJ.is('textarea'))
+            {
+                let Items = OBJ.val().split(/\n/);
+                AccessoryDetail[OBJ.attr('config')] = Items
+            }
+            else
+            {
+                AccessoryDetail[OBJ.attr('config')] = OBJ.val();
+            }
         })
     
         let Req =

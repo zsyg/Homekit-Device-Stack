@@ -38,6 +38,7 @@ if (config.bridgeConfig.pincode.length < 10)
 
     util.saveBridgeConfig(config.bridgeConfig)
 
+    // Create a demo accessory for new configs (accessories will heronin be created via the ui)
     const DemoAccessory = {
 
         "type": "SWITCH",
@@ -81,7 +82,7 @@ for (let i = 0; i < config.accessories.length; i++)
     let AccessoryOBJ = config.accessories[i]
 
     console.log(" Configuring Accessory : " + AccessoryOBJ.name + " (" + AccessoryOBJ.type + ")")
-    AccessoryOBJ.usernameCleaned = AccessoryOBJ.username.replace(/:/g, "");
+    AccessoryOBJ.accessoryID = AccessoryOBJ.username.replace(/:/g, "");
 
     switch(AccessoryOBJ.type)
     {
@@ -90,7 +91,7 @@ for (let i = 0; i < config.accessories.length; i++)
             let Acc = new  Accessory.Types[AccessoryOBJ.type].Object(AccessoryOBJ);
             Acc.on('STATE_CHANGE', (PL,O) =>Change(PL, AccessoryOBJ,O))
             Acc.on('IDENTIFY', (P) =>Identify(P, AccessoryOBJ))
-            Accesories[AccessoryOBJ.usernameCleaned] = Acc;
+            Accesories[AccessoryOBJ.accessoryID] = Acc;
             Bridge.addAccessory(Acc.getAccessory())
             break;
     }

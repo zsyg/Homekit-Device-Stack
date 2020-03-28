@@ -195,8 +195,21 @@ const Reset = function ()
         "routes": {
             "NodeRed": {
                 "type": "HTTP",
-                "destinationURI": "http://10.0.0.2:1880/HKDS",
-                "method": "POST"
+                "destinationURI": "http://10.0.0.2:1880/HKDS"
+            },
+            "UDPBroadcast": {
+                "type": "UDP",
+                "address": "255.255.255.255",
+                "port": 34322
+            },
+            "FileOutput": {
+                "type": "FILE",
+                "directory": "./DeviceChangeEvents"
+            },
+            "MQTTBroker": {
+                "type": "MQTT",
+                "broker": "mqtt://test.mosquitto.org",
+                "topic": "homekitdevicesstack"
             }
         },
         "accessories": []
