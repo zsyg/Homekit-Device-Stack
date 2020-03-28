@@ -1,4 +1,4 @@
-![Nodes](https://github.com/marcus-j-davies/Homekit-Device-Stack/blob/master/HKWS.png?raw=true)
+![Nodes](https://github.com/marcus-j-davies/Homekit-Device-Stack/blob/master/HKDS.png?raw=true)
 # Homekit Device Stack
 A Middleware Server, for bringing HomeKit functionality to your Home Automation.
 
