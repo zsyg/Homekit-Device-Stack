@@ -1,0 +1,20 @@
+{
+    "loginUsername": "admin",
+    "loginPassword": "21232f297a57a5a743894a0e4a801fc3",
+    "wsCommPort": 7990,
+    "webInterfacePort": 7989,
+    "bridgeConfig": {
+        "pincode": "",
+        "username": "",
+        "setupID": "",
+        "serialNumber": ""
+    },
+    "routes": {
+        "NodeRed": {
+            "type": "HTTP",
+            "destinationURI": "http://10.0.0.2:1880/HKDS",
+            "method": "POST"
+        }
+    },
+    "accessories": []
+}
