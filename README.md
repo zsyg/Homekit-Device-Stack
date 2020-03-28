@@ -10,6 +10,8 @@ HomeKit Device Stack is a NodeJS server with a fully graphical web frontend, if 
 In essance, you create devices via the web frontend, be it a Smart TV, Intruder Alarm, A Door Sensor, a Thermostat, a Party Switch and many many more.
 You then have fun with it on your iDevice.
 
+![Nodes](https://github.com/marcus-j-davies/Homekit-Device-Stack/blob/master/Screenshot.png?raw=true)
+
 If however, you actually want to gain some usefulness from it, keep reading.
 
 ## The Keep Reading Part.
