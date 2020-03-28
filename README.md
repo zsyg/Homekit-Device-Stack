@@ -48,3 +48,18 @@ HomeKit Device Stack has an a web API, that is used to alter the devices state, 
 Not yet!
 It will run on any platform that runs NodeJS (Windows, Linux, OSX, Raspberry Pi).
 
+## Installing
+
+Ensure you have **NodeJS** and **NPM** installed.
+Then install Homekit Device Stack
+
+    npm -i homekit-device-stack
+
+## Running
+Within the directory that HomeKit Device Is Running.
+
+    node app.js
+
+
+
+
