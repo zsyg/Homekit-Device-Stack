@@ -1,4 +1,5 @@
-![Nodes](https://github.com/marcus-j-davies/Homekit-Device-Stack/blob/master/HKDS.png?raw=true)
+| ![Nodes](https://github.com/marcus-j-davies/Homekit-Device-Stack/blob/master/HKDS.png?raw=true) |
+| :--: | 
 # Homekit Device Stack
 A Middleware Server, for bringing HomeKit functionality to your Home Automation.
 
@@ -22,7 +23,7 @@ After you have created a device, you then program it, to advertise its changes. 
   
 ## This Sounds Familiar
 This is not HomeBridge, HomeBridge is designed to bridge the gap between HomeKit and non compatbile devices. HomeKit Device Stack is quite different.
-HomeKit Device Stack has been designed to act as sink. that is - you wire up the events from your devices into other automations, such as NodeRed, Home Assistant or any other system that can make use of one of the output mechanisms above.
+HomeKit Device Stack has been designed to act as sink. that is - you wire up the events from your devices into other automations, such as NodeRed, Home Assistant or any other system that can make use of the output mechanisms above.
 
 The devcies Homekit Device Stack can create are as follows (more will become available as development progresses)
 
@@ -35,6 +36,7 @@ The devcies Homekit Device Stack can create are as follows (more will become ava
   - Motion Sensor
   - Lock Mechanism
   - Garage Door Opener
+  - Thermostat
 
 
 ## So, it only reports changes?
