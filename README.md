@@ -7,7 +7,7 @@ A Middleware Server, for bringing HomeKit functionality to your Home Automation.
 HomeKit Device Stack is a NodeJS server with a fully graphical web frontend, if you're a Home Automation Enthusiast, wanting to explore and learn HomeKit, HomeKit Device Stack can do that. If you're a serious Home Automation User, then HomeKit Device Stack plays nice with other automation systems by using common transport mechanisms.
 
 ## OK, but what does it actually do?
-In essance, you create devices via the web frontend, be it a Smart TV, Intruder Alarm, A Door Sensor, a thermostat, a Party Switch and many many more.
+In essance, you create devices via the web frontend, be it a Smart TV, Intruder Alarm, A Door Sensor, a Thermostat, a Party Switch and many many more.
 You then have fun with it on your iDevice.
 
 If however, you actually want to gain some usefulness from it, keep reading.
@@ -48,18 +48,18 @@ HomeKit Device Stack has an a web API, that is used to alter the devices state, 
 Not yet!
 It will run on any platform that runs NodeJS (Windows, Linux, OSX, Raspberry Pi).
 
-## Installing
-
+## Installing   
 Ensure you have **NodeJS** and **NPM** installed.
 Then install Homekit Device Stack
 
     npm -i homekit-device-stack
 
 ## Running
-Within the directory that HomeKit Device Is Running.
+Within the directory that HomeKit Device Stack is installed.
 
     node app.js
 
+If creating an auto start script - ensure the script is set to run under the installed directory
 
 
 
