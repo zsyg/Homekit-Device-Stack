@@ -32,5 +32,13 @@
     "crypto": "1.0.1",
     "ip": "1.1.5",
     "readline": "1.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcus-j-davies/Homekit-Device-Stack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcus-j-davies/Homekit-Device-Stack/issues"
+  },
+  "homepage": "https://github.com/marcus-j-davies/Homekit-Device-Stack#readme"
 }
