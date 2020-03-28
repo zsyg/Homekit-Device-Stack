@@ -58,12 +58,7 @@ const UDP = function(route, payload)
     server.send(STRING,0,STRING.length,route.port,route.address,function(e,n)
     {
       server.close();
-     
-
     });
-
-    
-
   });
 
  
