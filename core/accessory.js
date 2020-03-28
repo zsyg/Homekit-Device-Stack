@@ -577,6 +577,49 @@ class GarageDoor extends AccessoryCLS
 }
 GarageDoor.prototype.setCharacteristics = _basicSet;
 
+/** 
+* Thermotsat Accessory
+*/
+class Thermostat extends AccessoryCLS
+{
+    
+    constructor(Config)
+    {
+        super(Config, Accessory.Categories.THERMOSTAT,false);
+      
+
+        this._service = new Service.Thermostat(Config.name,Config.name);
+
+        this._service.setCharacteristic(Characteristic.CurrentHeatingCoolingState, 0);
+        this._service.setCharacteristic(Characteristic.TargetHeatingCoolingState, 0);
+        this._service.setCharacteristic(Characteristic.CurrentTemperature, 21);
+        this._service.setCharacteristic(Characteristic.TargetTemperature, 21);
+        this._service.setCharacteristic(Characteristic.TemperatureDisplayUnits, 0);
+        this._service.setCharacteristic(Characteristic.CoolingThresholdTemperature, 26);
+        this._service.setCharacteristic(Characteristic.HeatingThresholdTemperature, 18);
+
+        this._Properties["CurrentHeatingCoolingState"] = 0;
+        this._Properties["TargetHeatingCoolingState"] = 0;
+        this._Properties["CurrentTemperature"] = 21;
+        this._Properties["TargetTemperature"] = 21;
+        this._Properties["TemperatureDisplayUnits"] = 0;
+        this._Properties["CoolingThresholdTemperature"] = 26;
+        this._Properties["HeatingThresholdTemperature"] = 18;
+
+
+       
+
+        const EventStruct = {
+            "Get":["TargetHeatingCoolingState","CurrentHeatingCoolingState","TemperatureDisplayUnits","CurrentTemperature","TargetTemperature","CoolingThresholdTemperature","HeatingThresholdTemperature"],
+            "Set":["TargetHeatingCoolingState","TemperatureDisplayUnits","TargetTemperature","CoolingThresholdTemperature","HeatingThresholdTemperature"]
+        }
+
+        this._wireUpEvents(this._service,EventStruct);
+        this._accessory.addService(this._service);
+    }
+}
+Thermostat.prototype.setCharacteristics = _basicSet;
+
 
 /**
 * ConfigTypeID:{Template:HTML TPL File,Object:Class Object}
@@ -591,7 +634,8 @@ const Types = {
     "CONTACT_SENSOR":   {"Title":"Contact Sensor","Description":"A contact sensor for doors,windows and other fixings.","Template":"Basic","Object":Contact},
     "MOTION_SENSOR":    {"Title":"Motion Sensor","Description":"A Motion Sensor","Template":"Basic","Object":Motion},
     "LOCK":             {"Title":"Smart Lock","Description":"A Smart enabled Lock.","Template":"Basic","Object":Lock},
-    "GARAGE_DOOR":      {"Title":"Garage Door Opener","Description":"A Smart enabled Garage Door Opener","Template":"Basic","Object":GarageDoor}
+    "GARAGE_DOOR":      {"Title":"Garage Door Opener","Description":"A Smart enabled Garage Door Opener","Template":"Basic","Object":GarageDoor},
+    "THERMOSTAT":       {"Title":"Smart Thermostat","Description":"A Smart enabled Thermostat","Template":"Basic","Object":Thermostat}
     
 }
 
