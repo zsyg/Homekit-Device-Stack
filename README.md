@@ -101,5 +101,16 @@ Within the directory that HomeKit Device Stack is installed.
 
 If creating an auto start script - ensure the script is set to run under the installed directory
 
+## Credits
+HomeKit Device Stack is based on the awesome [HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS)
+library, developed by KhaosT and the other devs, without it, projects like this on are not possible.
+
+## Version History
+  - 1.0.0
+    Initial Release
+
+## To Do
+  - Create a better UI for managing Routes
+  - Continue to add more accessory types
 
 

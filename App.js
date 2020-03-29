@@ -80,8 +80,12 @@ function SetupRoutes()
     {
         Routes[RouteNames[i]] = routes[config.routes[RouteNames[i]].type];
     }
+
+   
 }
 SetupRoutes();
+
+
 
 
 
