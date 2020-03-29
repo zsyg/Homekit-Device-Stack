@@ -95,7 +95,7 @@ const saveConfig = function(config)
     {
         if (err)
         {
-            console.log('Could not create config file')
+            
         }
         
     })

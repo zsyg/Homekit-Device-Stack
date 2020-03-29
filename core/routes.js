@@ -17,6 +17,7 @@ const HTTP = function (route, payload)
   delete Copy.accessory.route;
   delete Copy.accessory.name;
   delete Copy.accessory.description;
+  Copy["route_type"] = "HTTP"
 
   const Data = JSON.stringify(Copy)
   const URI = url.parse(route.destinationURI)
@@ -48,6 +49,7 @@ const UDP = function(route, payload)
   delete Copy.accessory.route;
   delete Copy.accessory.name;
   delete Copy.accessory.description;
+  Copy["route_type"] = "UDP"
 
   const server = dgram.createSocket("udp4");
 
@@ -75,6 +77,7 @@ const MQTT = function(route, payload)
   delete Copy.accessory.route;
   delete Copy.accessory.name;
   delete Copy.accessory.description;
+  Copy["route_type"] = "MQTT"
 
    const MQTTC = mqtt.connect(route.broker)
 
@@ -98,6 +101,7 @@ const FILE = function (route, payload)
   delete Copy.accessory.route;
   delete Copy.accessory.name;
   delete Copy.accessory.description;
+  Copy["route_type"] = "FILE"
 
 
 
@@ -106,7 +110,7 @@ const FILE = function (route, payload)
   fs.writeFile(Path, JSON.stringify(Copy), 'utf8', function (err)
   {
     if (err) {
-      console.log('Could not create config file')
+    
     }
 
   })
