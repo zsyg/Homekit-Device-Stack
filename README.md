@@ -106,7 +106,7 @@ HomeKit Device Stack is based on the awesome [HAP-NodeJS](https://github.com/Kha
 library, developed by KhaosT and the other devs, without it, projects like this on are not possible.
 
 ## Version History
-  - 1.0.0
+  - 1.0.0  
     Initial Release
 
 ## To Do
