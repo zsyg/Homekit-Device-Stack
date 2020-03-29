@@ -1,5 +1,8 @@
 <div class="TopBanner">Homekit Accessories
-<div style="float:right; cursor: pointer;" onclick="ShowAvailableAccessories()">Add Accessory</div>
+    <div style="float: right;">
+        <span style=" cursor: pointer;" onclick="Routes()">Manage Routes</span> |
+        <span style=" cursor: pointer;" onclick="ShowAvailableAccessories()">Add Accessory</span>
+    </div>
 </div>
 
 <script>

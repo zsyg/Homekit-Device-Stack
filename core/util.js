@@ -32,7 +32,19 @@ const makeID = function (length)
     return result;
 }
 
+/**
+ * Config file management feels really messy currently.
+ */
+const updateRouteConfig = function(Config)
+{
+    const CFF = fs.readFileSync(process.cwd() + "/config.json", 'utf8');
+    const ConfigOBJ = JSON.parse(CFF);
 
+    ConfigOBJ.routes = Config;
+
+    saveConfig(ConfigOBJ);
+
+}
 
 /**
  * Config file management feels really messy currently.
@@ -240,5 +252,6 @@ module.exports = {
     appendAccessoryToConfig:appendAccessoryToConfig,
     checkReset:checkReset,
     editAccessory:editAccessory,
-    saveBridgeConfig:saveBridgeConfig
+    saveBridgeConfig:saveBridgeConfig,
+    updateRouteConfig:updateRouteConfig
 }

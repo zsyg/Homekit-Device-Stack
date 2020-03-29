@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const Accessory = require('./accessory');
 const util = require('./util');
 
-const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge)
+const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetup)
 {
     const _Clients = [];
     let _Paired = false;
@@ -17,6 +17,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge)
     const _ChangeEvent = ChangeEvent;
     const _IdentifyEvent = IdentifyEvent
     const _Bridge = Bridge;
+    const _RouteSetup = RouteSetup
 
 
     // Express
@@ -53,7 +54,8 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge)
         "Login":process.cwd()+"/ui/templates/login.tpl",
         "Index":process.cwd()+"/ui/templates/index.tpl",
         "Main":process.cwd()+"/ui/templates/main.tpl",
-        "Setup":process.cwd()+"/ui/templates/setup.tpl"
+        "Setup":process.cwd()+"/ui/templates/setup.tpl",
+        "Routes":process.cwd()+"/ui/templates/routes.tpl"
     }
 
    
@@ -88,7 +90,37 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge)
                 _editAccessory(Req.config,Req.username, connection)
                 break;
 
+            case "routes":
+                _showRoutes(connection);
+                break;
+
+            case "saveRoutes":
+                _saveRoutes(Req.routeConfig,connection);
+                break;
+
         }
+    }
+
+    function _showRoutes(connection)
+    {
+        const TPL = fs.readFileSync(Templates.Routes, 'utf8');
+        const HTML = mustache.render(TPL, {"Routes":JSON.stringify(config.routes,null,2)});
+
+        const PL = {
+            "type": "page",
+            "content":HTML
+        }
+
+        connection.send(JSON.stringify(PL));
+    }
+
+    function _saveRoutes(Config,connection)
+    {
+       config.routes = Config;
+       util.updateRouteConfig(Config);
+       _RouteSetup();
+       _sendDash(connection);
+
     }
 
     function _sendLogin(connection)

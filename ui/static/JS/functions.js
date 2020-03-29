@@ -61,6 +61,28 @@ function expandAccessory(element)
     $(Parent).animate({ height: "300px" });
 }
 
+function Routes()
+{
+    let Req =
+    {
+        "type": "routes",
+    }
+    Socket.send(JSON.stringify(Req));
+}
+
+function SaveRoutes()
+{
+    let RC = $('#RoutesConfig').val();
+
+    let Req =
+    {
+        "type": "saveRoutes",
+        "routeConfig":JSON.parse(RC)
+    }
+    Socket.send(JSON.stringify(Req));
+  
+}
+
 function Main()
 {
     let Req =

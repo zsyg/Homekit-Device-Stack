@@ -66,11 +66,23 @@ Bridge.on('LISTENING', getsetupURI)
 // Routes
 const Routes = {
 }
-const RouteNames = Object.keys(config.routes);
-for(let i=0;i<RouteNames.length;i++)
+function SetupRoutes()
 {
-    Routes[RouteNames[i]] = routes[config.routes[RouteNames[i]].type];
+
+    const Keys = Object.keys(Routes);
+    for(let i = 0;i<Keys.length;i++)
+    {
+        delete Routes[Keys[i]];
+    }
+
+    const RouteNames = Object.keys(config.routes);
+    for(let i=0;i<RouteNames.length;i++)
+    {
+        Routes[RouteNames[i]] = routes[config.routes[RouteNames[i]].type];
+    }
 }
+SetupRoutes();
+
 
 
 
@@ -104,7 +116,7 @@ console.log(" Starting web server")
 console.log(" ")
 
 // Web Server 
-const UIServer = new Server.Server(Accesories,Change,Identify,Bridge);
+const UIServer = new Server.Server(Accesories,Change,Identify,Bridge,SetupRoutes);
 
 const BridgeFileName = process.cwd() + "/homekit/AccessoryInfo." + config.bridgeConfig.username.replace(/:/g, "") + ".json";
 if (fs.existsSync(BridgeFileName))
