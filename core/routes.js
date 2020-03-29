@@ -17,6 +17,7 @@ const HTTP = function (route, payload)
   delete Copy.accessory.route;
   delete Copy.accessory.name;
   delete Copy.accessory.description;
+  delete Copy.accessory.serialNumber;
   Copy["route_type"] = "HTTP"
 
   const Data = JSON.stringify(Copy)
@@ -49,6 +50,7 @@ const UDP = function(route, payload)
   delete Copy.accessory.route;
   delete Copy.accessory.name;
   delete Copy.accessory.description;
+  delete Copy.accessory.serialNumber;
   Copy["route_type"] = "UDP"
 
   const server = dgram.createSocket("udp4");
@@ -77,6 +79,7 @@ const MQTT = function(route, payload)
   delete Copy.accessory.route;
   delete Copy.accessory.name;
   delete Copy.accessory.description;
+  delete Copy.accessory.serialNumber;
   Copy["route_type"] = "MQTT"
 
    const MQTTC = mqtt.connect(route.broker)
@@ -101,6 +104,7 @@ const FILE = function (route, payload)
   delete Copy.accessory.route;
   delete Copy.accessory.name;
   delete Copy.accessory.description;
+  delete Copy.accessory.serialNumber;
   Copy["route_type"] = "FILE"
 
 

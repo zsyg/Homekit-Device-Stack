@@ -23,27 +23,28 @@ After you have created a device, you then program it, to advertise its changes. 
   - MQTT 
 
 In HomeKit Device Stack, The above outputs are refered to as a 'route' you can create any number of routes, and any number of accessories can use a single route.
-as an example: if you wanted  an accessory to forward its state chnages to Node-Red, then you can create a UDP route, then have Node-Red listen on the UDP port for the Broadcast.
+as an example: if you wanted  an accessory to forward its state changes to Node-Red, then you can create a UDP route, then have Node-Red listen on the UDP port for the Broadcast.
 if you have an MQTT broker then you can achieve the same thing as with HTTP using the Node-Red HTTP IN node.
 
-The payload that is sent via your configured is below  
+The payload that is sent via your configured route is below  
 ```
-    {
-      "accessory": {
-        "type": "SWITCH",
-        "serialNumber": "OFC0FRMFYDUY",
-        "accessoryID": "FF6BF61E98E4"
-      },
-      "type": "change",
-      "change": {
-        "characteristic": "On",
-        "value": true
-      },
-      "source": "iOS_DEVICE",
-      "route_type": "MQTT"
-    }
+{
+  "accessory": {
+    "type": "SWITCH",
+    "accessoryID": "FF6BF61E98E4"
+  },
+  "type": "change",
+  "change": {
+    "characteristic": "On",
+    "value": true
+  },
+  "source": "iOS_DEVICE",
+  "route_type": "MQTT"
+}
 ```
-  
+
+The **source** object in the payload above, identfies where the change occurred **iOS_DEVICE** or **API**
+
 ## This Sounds Familiar
 This is not HomeBridge, HomeBridge is designed to bridge the gap between HomeKit and non compatible devices. HomeKit Device Stack is quite different.
 HomeKit Device Stack has been designed to act as a sink. that is - you wire up the events from your devices into other automations, such as NodeRed, Home Assistant or any other system that can make use of the output mechanisms above.
