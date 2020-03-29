@@ -103,7 +103,7 @@ If creating an auto start script - ensure the script is set to run under the ins
 
 ## Credits
 HomeKit Device Stack is based on the awesome [HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS)
-library, developed by KhaosT and the other devs, without it, projects like this on are not possible.
+library, without it, projects like this one are not possible.
 
 ## Version History
   - 1.0.0  
