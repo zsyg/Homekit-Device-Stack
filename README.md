@@ -26,7 +26,7 @@ In HomeKit Device Stack, The above outputs are refered to as a 'route' you can c
 as an example: if you wanted  an accessory to forward its state chnages to Node-Red, then you can create a UDP route, then have Node-Red listen on the UDP port for the Broadcast.
 if you have an MQTT broker then you can achieve the same thing as with HTTP using the Node-Red HTTP IN node.
 
-The payload that is sent via your configured is below
+The payload that is sent via your configured is below  
     {
       "accessory": {
         "type": "SWITCH",
