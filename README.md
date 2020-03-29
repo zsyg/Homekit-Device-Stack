@@ -27,6 +27,7 @@ as an example: if you wanted  an accessory to forward its state chnages to Node-
 if you have an MQTT broker then you can achieve the same thing as with HTTP using the Node-Red HTTP IN node.
 
 The payload that is sent via your configured is below  
+```
     {
       "accessory": {
         "type": "SWITCH",
@@ -41,6 +42,7 @@ The payload that is sent via your configured is below
       "source": "iOS_DEVICE",
       "route_type": "MQTT"
     }
+```
   
 ## This Sounds Familiar
 This is not HomeBridge, HomeBridge is designed to bridge the gap between HomeKit and non compatible devices. HomeKit Device Stack is quite different.
