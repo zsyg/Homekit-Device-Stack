@@ -75,7 +75,7 @@ The URL for the API is **http://IP-ADDRESS:7989/admin-password/**
   - GET **/accessories/accessoryID** | Same as above but for  the identified accessory
   - POST **/accessories/accessoryID** | Sets characteristics for the identified accessory
 
-The body in your HTTP POST command, shoukd be nothing more than a JSON object represetning the characteristics to set
+The body in your HTTP POST command, should be nothing more than a JSON object representing the characteristics to set
 
 ```
 {
