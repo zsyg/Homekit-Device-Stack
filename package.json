@@ -1,6 +1,6 @@
 {
   "name": "homekit-device-stack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Middleware Server, for bringing homekit functionality to your Home Automation.",
   "main": "App.js",
   "keywords": [

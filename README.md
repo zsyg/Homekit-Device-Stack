@@ -3,7 +3,7 @@
 # Homekit Device Stack
 A Middleware Server, for bringing HomeKit functionality to your Home Automation.
 
- ## Say What!?
+## Say What!?
 HomeKit Device Stack is a NodeJS server with a fully graphical web frontend, if you're a Home Automation Enthusiast, wanting to explore and learn HomeKit, HomeKit Device Stack can do that. If you're a serious Home Automation User, then HomeKit Device Stack plays nice with other automation systems by using common transport mechanisms.
 
 ## OK, but what does it actually do?
@@ -113,7 +113,9 @@ library, without it, projects like this one are not possible.
 
 ## Version History
   - 1.0.0  
-    Initial Release
+    Initial Release  
+  - 1.0.1  
+    Fixed typo in read me
 
 ## To Do
   - Create a better UI for managing Routes
