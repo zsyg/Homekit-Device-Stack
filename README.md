@@ -49,6 +49,8 @@ The **source** object in the payload above, identfies where the change occurred 
 This is not HomeBridge, HomeBridge is designed to bridge the gap between HomeKit and non compatible devices. HomeKit Device Stack is quite different.
 HomeKit Device Stack has been designed to act as a sink. that is - you wire up the events from your devices into other automations, such as NodeRed, Home Assistant or any other system that can make use of the output mechanisms above.
 
+It's been designed as a universal middleware server - that is, it is capable of working along side other automation systems.
+
 The devices Homekit Device Stack can create are as follows (more will become available as development progresses)
 
   - Switch
