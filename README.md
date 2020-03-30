@@ -94,12 +94,12 @@ It will run on any platform that runs NodeJS (Windows, Linux, OSX, Raspberry Pi)
 Ensure you have **NodeJS** and **NPM** installed.
 Then install Homekit Device Stack
 
-    npm -i homekit-device-stack
+    npm install homekit-device-stack
 
 ## Running
 Within the directory that HomeKit Device Stack is installed.
 
-    node app.js
+    node App.js
 
 If creating an auto start script - ensure the script is set to run under the installed directory
 
