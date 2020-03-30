@@ -101,6 +101,10 @@ Within the directory that HomeKit Device Stack is installed.
 
 If creating an auto start script - ensure the script is set to run under the installed directory
 
+## Command line arguments
+**reset** - Completely Resets HomeKit Device Stack, bringing it back to its default/unconfigured state (inlcuding the default password)  
+**passwd** mypassword - set the admin password
+
 ## Credits
 HomeKit Device Stack is based on the awesome [HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS)
 library, without it, projects like this one are not possible.
