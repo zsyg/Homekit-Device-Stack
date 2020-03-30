@@ -1,6 +1,6 @@
 {
   "name": "komekit-devicestack",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Middleware Server, for bringing homekit functionality to your Home Automation.",
   "main": "App.js",
   "keywords": [

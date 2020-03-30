@@ -33,9 +33,6 @@ const makeID = function (length)
     return result;
 }
 
-/**
- * Config file management feels really messy currently.
- */
 const updateRouteConfig = function(Config)
 {
     const CFF = fs.readFileSync(process.cwd() + "/config.json", 'utf8');
@@ -47,9 +44,6 @@ const updateRouteConfig = function(Config)
 
 }
 
-/**
- * Config file management feels really messy currently.
- */
 const appendAccessoryToConfig = function(Accessory)
 {
     const CFF = fs.readFileSync(process.cwd() + "/config.json", 'utf8');
@@ -60,9 +54,7 @@ const appendAccessoryToConfig = function(Accessory)
     saveConfig(ConfigOBJ);
 
 }
-/**
- * Config file management feels really messy currently.
- */
+
 const editAccessory = function(Accessory, username)
 {
     const CFF = fs.readFileSync(process.cwd() + "/config.json", 'utf8');
@@ -88,9 +80,6 @@ const editAccessory = function(Accessory, username)
   
 
 }
-/**
- * Config file management feels really messy currently.
- */
 
 const saveBridgeConfig = function(config)
 {
@@ -114,9 +103,7 @@ const saveConfig = function(config)
     })
 }
 
-/**
- * Reset Configuration, Reset Homekit - nuke the whole lot!!
- */
+
 
 const _deleteFolderRecursive = function (path)
 {
@@ -138,19 +125,6 @@ const _deleteFolderRecursive = function (path)
     }
 };
 
-const deleteAccessory = function(id)
-{
-    const CFF = fs.readFileSync(process.cwd() + "/config.json", 'utf8');
-    const ConfigOBJ = JSON.parse(CFF);
-
-    
-    const NA =  ConfigOBJ.accessories.filter(a=> a.username != id)
-    ConfigOBJ.accessories = NA;
-    
-    saveConfig(ConfigOBJ);
-
-    
-}
 
 const checkPassword = function()
 {
@@ -176,6 +150,20 @@ const checkPassword = function()
         }
 
     }
+}
+
+const deleteAccessory = function(id)
+{
+    const CFF = fs.readFileSync(process.cwd() + "/config.json", 'utf8');
+    const ConfigOBJ = JSON.parse(CFF);
+
+    
+    const NA =  ConfigOBJ.accessories.filter(a=> a.username != id)
+    ConfigOBJ.accessories = NA;
+    
+    saveConfig(ConfigOBJ);
+
+    
 }
 
 const checkReset = function ()
