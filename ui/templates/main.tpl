@@ -18,7 +18,7 @@
                 <td style="padding-right:5px" valign="top">
                     <img class="invert" src="static/Images/device_icons/{{type}}.png" />
                 </td>
-                <td valign="top" style="text-align:left;width:100%">
+                <td valign="top" style="text-align:left;width:95%">
                     
                     <div style="font-weight:bold;font-size:24px">{{name}}</div>
                     
@@ -29,7 +29,7 @@
                     
                    
                 </td>
-                <td valign="top"><div onclick="edit('{{type}}','{{username}}')">Configure</div></td>
+                <td valign="top"><div onclick="edit('{{type}}','{{username}}')" style="text-align: center;cursor: pointer;margin-bottom: 5px;">[Configure]</div><div onclick="delete_accessory('{{username}}')" style="text-align: center;cursor: pointer;margin-bottom: 5px;">[Delete]</div></td>
             </tr>
 
         </tbody>

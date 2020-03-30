@@ -2,6 +2,7 @@
 const fs = require('fs');
 const readline = require("readline");
 const chalk = require('chalk');
+const crypto = require('crypto')
 
 const getRndInteger = function (min, max)
 {
@@ -137,11 +138,51 @@ const _deleteFolderRecursive = function (path)
     }
 };
 
+const deleteAccessory = function(id)
+{
+    const CFF = fs.readFileSync(process.cwd() + "/config.json", 'utf8');
+    const ConfigOBJ = JSON.parse(CFF);
+
+    
+    const NA =  ConfigOBJ.accessories.filter(a=> a.username != id)
+    ConfigOBJ.accessories = NA;
+    
+    saveConfig(ConfigOBJ);
+
+    
+}
+
+const checkPassword = function()
+{
+    if (process.argv.length > 3)
+    {
+        if(process.argv[2] == "passwd")
+        {
+            const NPWD =  process.argv[3];
+            const PW = crypto.createHash('md5').update(NPWD).digest("hex");
+
+            const CFF = fs.readFileSync(process.cwd() + "/config.json", 'utf8');
+            const ConfigOBJ = JSON.parse(CFF);
+
+            ConfigOBJ.loginPassword = PW;
+            saveConfig(ConfigOBJ);
+
+            console.log(chalk.keyword('yellow')(" Password has been set."))
+            console.log('')
+
+            process.exit(0);
+
+
+        }
+
+    }
+}
+
 const checkReset = function ()
 {
     if (process.argv.length > 2)
     {
-        if (process.argv[2] == "Reset")
+        if (process.argv[2] == "reset")
         {
 
 
@@ -253,5 +294,7 @@ module.exports = {
     checkReset:checkReset,
     editAccessory:editAccessory,
     saveBridgeConfig:saveBridgeConfig,
-    updateRouteConfig:updateRouteConfig
+    updateRouteConfig:updateRouteConfig,
+    checkPassword:checkPassword,
+    deleteAccessory:deleteAccessory
 }

@@ -26,7 +26,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
     app.use('/static', express.static(process.cwd() + '/ui/static'))
     app.get('/:pwd/accessories/',_processAccessoriesGet);
     app.get('/:pwd/accessories/:id', _processAccessoryGet);
-    app.post('/:pwd/accessories/:id', _processAccessorySet);
+    app.put('/:pwd/accessories/:id', _processAccessorySet);
     app.get('/', _sendIndex);
     app.listen(config.webInterfacePort)
 
@@ -45,7 +45,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
     WS.on('connection', function (connection)
     {
         _Clients.push(connection);
-        _sendLogin(connection);
+        _RenderStaticUI(connection,Templates.Login);
         connection.on('message', (m) => _processClientMessage(m,connection));
     });
 
@@ -66,6 +66,14 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
 
         switch (Req.type)
         {
+            case "main":
+                _RenderStaticUI(connection,Templates.Main)
+                break;
+
+            case "routes":
+                _RenderStaticUI(connection,Templates.Routes);
+                break;
+
             case "login":
                 _login(Req, connection);
                 break;
@@ -77,11 +85,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
             case "edit":
                 _showEdit(Req, connection)
                 break;
-
-            case "main":
-                _sendDash(connection)
-                break;
-
+                
             case "createAccessory":
                 _createAccessory(Req.config, connection)
                 break;
@@ -89,68 +93,20 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
             case "editAccessory":
                 _editAccessory(Req.config,Req.username, connection)
                 break;
-
-            case "routes":
-                _showRoutes(connection);
-                break;
-
+                
             case "saveRoutes":
                 _saveRoutes(Req.routeConfig,connection);
                 break;
 
+                case "deleteaccessory":
+                _deleteAccessory(Req.accessory,connection);
+                break;
+
         }
     }
 
-    function _showRoutes(connection)
+    function _RenderStaticUI(connection,template)
     {
-        const TPL = fs.readFileSync(Templates.Routes, 'utf8');
-        const HTML = mustache.render(TPL, {"Routes":JSON.stringify(config.routes,null,2)});
-
-        const PL = {
-            "type": "page",
-            "content":HTML
-        }
-
-        connection.send(JSON.stringify(PL));
-    }
-
-    function _saveRoutes(Config,connection)
-    {
-       config.routes = Config;
-       util.updateRouteConfig(Config);
-       _RouteSetup();
-       _sendDash(connection);
-
-    }
-
-    function _sendLogin(connection)
-    {
-        const TPL = fs.readFileSync(Templates.Login, 'utf8');
-        const HTML = mustache.render(TPL, {"Config":config});
-
-        const PL = {
-            "type": "page",
-            "content":HTML
-        }
-
-        connection.send(JSON.stringify(PL));
-    }
-
-    function _sendSetup(connection)
-    {
-        const TPL = fs.readFileSync(Templates.Setup, 'utf8');
-        const HTML = mustache.render(TPL, { "Config": config});
-
-        const PL = {
-            "type": "page",
-            "content": HTML
-        }
-        connection.send(JSON.stringify(PL));
-    }
-
-    function _sendDash(connection)
-    {
-        
         const TypeArray = [];
         const Keys = Object.keys(Accessory.Types);
         for(let i = 0;i<Keys.length;i++)
@@ -158,19 +114,45 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
             TypeArray.push({"Key":Keys[i],"Value":Accessory.Types[Keys[i]]})
         }
 
-       
-
-        const TPL = fs.readFileSync(Templates.Main, 'utf8');
-        const HTML = mustache.render(TPL, { "Config": config,"AvailableTypes":TypeArray,"TemplateLookup":JSON.stringify(Accessory.Types)});
+        const TPL = fs.readFileSync(template, 'utf8');
+        const HTML = mustache.render(TPL, {"TemplateLookup":JSON.stringify(Accessory.Types),"AvailableTypes":TypeArray,"Config": config,"Routes":JSON.stringify(config.routes,null,2)});
 
         const PL = {
             "type": "page",
-            "content": HTML
+            "content":HTML
         }
+
         connection.send(JSON.stringify(PL));
     }
+    function _deleteAccessory(accessoryId,connection)
+    {
+         //removeAccessory
+         const Acs = _Bridge.getAccessories();
+         const TargetBAcs = Acs.filter(a=> a.username == accessoryId)[0];
+         _Bridge.removeAccessory(TargetBAcs);
 
+         delete _Accessories[accessoryId.replace(/:/g, "")];
 
+         // Remove from config
+         util.deleteAccessory(accessoryId)
+         
+         const NA =  config.accessories.filter(a=> a.username != accessoryId)
+         config.accessories = NA;
+
+         _RenderStaticUI(connection,Templates.Main)
+
+    }
+  
+
+    function _saveRoutes(Config,connection)
+    {
+       config.routes = Config;
+       util.updateRouteConfig(Config);
+       _RouteSetup();
+       _RenderStaticUI(connection,Templates.Main)
+
+    }
+    
     function _createAccessory(AccessoryOBJ,connection)
     {
         AccessoryOBJ["pincode"] = util.getRndInteger(100, 999) + "-" + util.getRndInteger(10, 99) + "-" + util.getRndInteger(100, 999);
@@ -198,7 +180,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
         }
 
         
-       _sendDash(connection);
+        _RenderStaticUI(connection,Templates.Main)
     }
 
     function _editAccessory(AccessoryOBJ,username,connection)
@@ -241,7 +223,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
         
 
         
-       _sendDash(connection);
+        _RenderStaticUI(connection,Templates.Main)
     }
 
     function _login(Req,connection)
@@ -254,11 +236,12 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
             var TPL;
             if (_Paired)
             {
-                _sendDash(connection);
+                _RenderStaticUI(connection,Templates.Main)
             }
             else
             {
-                _sendSetup(connection);
+                
+                _RenderStaticUI(connection,Templates.Setup)
             }
         }
         else
@@ -399,7 +382,7 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
         {
             for(let i = 0;i<_Clients.length;i++)
             {
-                _sendDash( _Clients[i]);
+                _RenderStaticUI(_Clients[i],Templates.Main)
              
             }
         }
@@ -407,7 +390,8 @@ const Server = function(Accesories, ChangeEvent, IdentifyEvent, Bridge,RouteSetu
         {
             for(let i = 0;i<_Clients.length;i++)
             {
-                _sendSetup( _Clients[i]);
+               
+                _RenderStaticUI(_Clients[i],Templates.Setup)
              
             }
         }

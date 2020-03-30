@@ -14,6 +14,12 @@ if(util.checkReset())
     return; // stop (whilst we check they know what they are doing.)
 }
 
+// Check password reset
+if(util.checkPassword())
+{
+    return; // stop
+}
+
 // Banner
 console.log(chalk.keyword('orange')(" HomeKit"))
 console.log(chalk.keyword('white')(" Device Stack"))
@@ -26,16 +32,14 @@ console.log(" ")
 
 
 
-// Genertae a Bridge and a demo accessory
+
 if (config.bridgeConfig.pincode.length < 10)
 {
+    // Genertae a Bridge
     config.bridgeConfig.pincode = util.getRndInteger(100, 999) + "-" + util.getRndInteger(10, 99) + "-" + util.getRndInteger(100, 999);
     config.bridgeConfig.username = util.genMAC();
     config.bridgeConfig.setupID = util.makeID(4);
     config.bridgeConfig.serialNumber = util.makeID(12)
-
-    
-
     util.saveBridgeConfig(config.bridgeConfig)
 
     // Create a demo accessory for new configs (accessories will heronin be created via the ui)
@@ -61,8 +65,6 @@ const Bridge = new Accessory.Bridge(config.bridgeConfig)
 Bridge.on('PAIR_CHANGE', Paired)
 Bridge.on('LISTENING', getsetupURI)
 
-
-
 // Routes
 const Routes = {
 }
@@ -85,12 +87,7 @@ function SetupRoutes()
 }
 SetupRoutes();
 
-
-
-
-
-
-// Configure Our Acessories 
+// Configure Our Accessories 
 const Accesories = {
 }
 for (let i = 0; i < config.accessories.length; i++)
@@ -166,7 +163,6 @@ function Change(PL, Object,Originator)
         "source":Originator
     }
 
-    //UIServer.push(Payload);
     Routes[Object.route](config.routes[Object.route],Payload);
 }
 

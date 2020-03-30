@@ -225,6 +225,19 @@ function Save(ObjectType)
 
 }
 
+function delete_accessory(id)
+{
+    if(confirm('Are you sure you wish to delete this accessory? it cannot be recovered if you continue!'))
+    {
+        let Req =
+        {
+            "type": "deleteaccessory",
+            "accessory":id
+        }
+        Socket.send(JSON.stringify(Req));
+    }
+}
+
 function Login()
 {
     let Req =

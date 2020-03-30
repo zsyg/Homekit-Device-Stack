@@ -66,16 +66,16 @@ The devices Homekit Device Stack can create are as follows (more will become ava
 ## So, it only reports changes?
 Nope!
 
-HomeKit Device Stack has a HTTP based API, that is used to alter the devices state, this alterred state is then reflected in HomeApp, or any other Homekit enabled application.
-changes originating from a call to the API will trigger routes to execute - making use of the **source** object can be used to filter these out.
+HomeKit Device Stack has a REST based API, that is used to alter the devices state, this alterred state is then reflected in HomeApp, or any other Homekit enabled application.
+changes originating from a call to the API will cause routes to trigger - making use of the **source** object can be used to filter these out.
 
 The URL for the API is **http://IP-ADDRESS:7989/admin-password/**
 
   - GET **/accessories**             | Lists all accessories and there current characteristics
-  - GET **/accessories/accessoryID** | Same as above but for  the identified accessory
-  - POST **/accessories/accessoryID** | Sets characteristics for the identified accessory
+  - GET **/accessories/accessoryID** | Same as above but for the identified accessory
+  - PUT **/accessories/accessoryID** | Sets characteristics for the identified accessory
 
-The body in your HTTP POST command, should be nothing more than a JSON object representing the characteristics to set
+The body in your HTTP PUT command, should be nothing more than a JSON object representing the characteristics to set
 
 ```
 {
