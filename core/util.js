@@ -250,7 +250,7 @@ const Reset = function ()
             "MQTTBroker": {
                 "type": "MQTT",
                 "broker": "mqtt://test.mosquitto.org",
-                "topic": "homekitdevicesstack"
+                "topic": "homekitdevicestack"
             }
         },
         "accessories": []
