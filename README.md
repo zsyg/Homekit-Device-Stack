@@ -116,5 +116,6 @@ library, without it, projects like this one are not possible.
 ## To Do
   - Create a better UI for managing Routes
   - Continue to add more accessory types
+  - Look into more ways to manipulate devices other than just HTTP (MQTT, UDP etc)
 
 
